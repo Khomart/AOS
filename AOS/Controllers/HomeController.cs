@@ -10,7 +10,10 @@ namespace AOS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account");
+            else
+                return View();
         }
 
         public ActionResult About()

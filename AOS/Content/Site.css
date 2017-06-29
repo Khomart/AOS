@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -17,8 +17,269 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
+/*input,*/
+/*select,*/
 textarea {
     max-width: 280px;
 }
+section.mainPage{
+    background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
+    z-index:1000;
+    display: flex;
+    width:100%; 
+    height:100%;
+    background-color: rgba(37, 96, 144, 0.2);
+}
+.operator{
+    background-image: url(/Content/plane.jpg);
+    height: 100%;
+    width: 55%;
+    display: inline-block;
+    float: left;
+    background-size: cover;
+    position: absolute;
+    background-position-x: center;
+    z-index: -1;
+}
+.state{
+    background-image: url(/Content//flags.jpg);
+    height: 100%;
+    width: 55%;
+    display: inline-block;
+    left: 45%;
+    float: right;
+    position: absolute;
+    background-size: cover;
+    background-position-x: center;
+    clip-path: polygon(17% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: -1;
+}
+.signIn{
+    margin:auto;
+    //text-align:center;
+}
+.signIn .signAction, .signIn p{
+    text-align:center;
+}
+
+/*Front Login Area*/
+.signIn .logo{
+    background: url('/Content/FINAL LOGO.jpg') center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 250px;
+    margin: -2em 0 0 0;
+    background-size: contain;
+}
+.signIn form {
+	width: 380px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: #ffffff;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,.14902) 0 1px 6px 4px, rgba(0,0,0,.09804) 0 1px 2px 0;
+}
+
+.signIn .mdl-checkbox__label{
+    float: left;
+    color: rgba(0, 0, 0, 0.28);
+}
+.signIn .mdl-checkbox__box-outline{
+    left:10px;
+}
+.signIn .mdl-checkbox__ripple-container{
+    left:0;
+}
+.signIn .mdl-checkbox__label{
+    float:left;
+    color: rgba(0, 0, 0, 0.28);
+    left: 10px;
+}
+.signIn label.mdl-checkbox{
+    margin:20px 0;
+}
+.signIn button{
+    width: 200px;
+    height: 40px;
+}
+/*.signIn .group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
+
+.signIn input {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	-webkit-appearance: none;
+	display: block;
+	background: #ffffff;
+	color: #636363;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #757575;
+}
+
+.signIn input:focus { outline: none; }
+
+
+/* Label 
+
+.signIn label {
+	color: #999; 
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: all 0.2s ease;
+}
+
+
+/* active 
+
+.signIn input:focus ~ label, .signIn input.used ~ label {
+	top: -20px;
+  transform: scale(.75); left: -2px;
+	/* font-size: 14px; */
+	color: #4a89dc;
+}
+
+
+/* Underline 
+
+.signIn .bar {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.signIn .bar:before, .bar:after {
+	content: '';
+	height: 2px; 
+	width: 0;
+	bottom: 1px; 
+	position: absolute;
+	background: #4a89dc; 
+	transition: all 0.2s ease;
+}
+
+.signIn .bar:before { left: 50%; }
+
+.signIn .bar:after { right: 50%; }
+
+
+/* active 
+
+.signIn input:focus ~ .bar:before, .signIn input:focus ~ .bar:after { width: 50%; }
+
+
+/* Highlight 
+
+.signIn .highlight {
+	position: absolute;
+	height: 60%; 
+	width: 100px; 
+	top: 25%; 
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+
+/* active 
+
+.signIn input:focus ~ .highlight {
+	animation: inputHighlighter 0.3s ease;
+}
+
+
+/* Animations 
+
+@keyframes inputHighlighter {
+	from { background: #4a89dc; }
+	to 	{ width: 0; background: transparent; }
+}
+
+
+/* Button 
+
+.signIn .button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  width: 100%;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #3160B6;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.signIn .button:focus { outline: 0; }
+
+
+/* Button modifiers 
+
+.signIn .buttonBlue {
+  background: #4a89dc;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.signIn .buttonBlue:hover { background: #357bd8; }
+
+
+/* Ripples container 
+
+.signIn .ripples {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+/* Ripples circle 
+
+.signIn .ripplesCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.signIn .ripples.is-active .ripplesCircle {
+  animation: ripples .4s ease-in;
+}
+
+
+/* Ripples animation 
+
+@keyframes ripples {
+  0% { opacity: 0; }
+
+  25% { opacity: 1; }
+
+  100% {
+    width: 200%;
+    padding-bottom: 200%;
+    opacity: 0;
+  }
+}*/
+/* Front login area over*/

@@ -1,40 +1,97 @@
-﻿@model AOS.Models.RegisterViewModel
+﻿@model AOS.Models.NewRegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+@*<h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }*@
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "mui-form", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
+    <div class="logo"></div>
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
+    <div class="mui-select">
+        @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.userTypes, "Value", "Text"), " ",new { @class= "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" })
+        <label>Specify Account Type</label>
+        @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
+    <div class="mui-textfield--float-label mui-textfield">
+        @Html.TextBoxFor(m => m.Email, new { @class = "mdl-textfield__input" })
+        @*<input class="mdl-textfield__input" type="text" id="sample1">*@
+        <label class="" for="sample1">Email</label>
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
+    <div class="mui-textfield--float-label mui-textfield">
+        @Html.TextBoxFor(m => m.Password, new { @class = "mdl-textfield__input" })
+        @*<input class="mdl-textfield__input" type="text" id="sample1">*@
+        <label class="" for="sample1">Password</label>
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
+    <div class="mui-textfield--float-label mui-textfield">
+        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "mdl-textfield__input" })
+        @*<input class="mdl-textfield__input" type="text" id="sample1">*@
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        <label class="" for="sample1">Confirm Password</label>
     </div>
+    <div class="signAction">
+        <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary">Register</button>
+    </div>
+    <p style="margin: 10px 0 0;">
+        @Html.ActionLink("Sign into existing account", "Login")
+    </p>
 }
+@*<form>
+    <div class="logo"></div>
+    <div class="group">
+        @Html.TextBoxFor(m => m.Email, new { @class = "" })
+        <span class="highlight"></span><span class="bar"></span>
+        <label>Email</label>
+    </div>
+    <div class="group">
+        <input type="password"><span class="highlight"></span><span class="bar"></span>
+        <label>Password</label>
+    </div>
+    <div class="group">
+        @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.userTypes, "Value", "Text"), "  -----Select List-----  ")
+        <span class="highlight"></span><span class="bar"></span>
+        <label>State or Operator?</label>
+    </div>
+    <button type="button" class="button buttonBlue">
+        Login
+        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+    </button>
+    <a href=""><span>Register</span></a>
+</form>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

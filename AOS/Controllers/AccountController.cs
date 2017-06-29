@@ -9,18 +9,23 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AOS.Models;
+using AOS.Models.IdentityModels;
+using AOS.DbAccess;
+using System.Web.Mvc.Html;
+using AOS.Models.UserEntities;
 
 namespace AOS.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-        {
-        }
+        //public AccountController()
+        //{
+        //}
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -139,6 +144,7 @@ namespace AOS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(userTypes));
             return View();
         }
 
@@ -147,11 +153,18 @@ namespace AOS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(NewRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                if (userTypes.Operator.Equals(model.Type))
+                {
+                    Operator flightOperator = new Operator
+                    {
+
+                    };
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -169,15 +182,16 @@ namespace AOS.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(userTypes));
             return View(model);
         }
 
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int userId, string code)
         {
-            if (userId == null || code == null)
+            if (!(userId > 0) || code == null)
             {
                 return View("Error");
             }
@@ -288,7 +302,7 @@ namespace AOS.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
+            if (!(userId > 0))
             {
                 return View("Error");
             }

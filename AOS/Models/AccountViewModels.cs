@@ -101,8 +101,40 @@ namespace AOS.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Given Name")]
+        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        public string FirstName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Family Name")]
+        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        public string SecondName { get; set; }
     }
 
+    public class RegisterContactViewModel
+    {
+        [Required]
+        [Display(Name = "Title")]
+        public int Title { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Given Name")]
+        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        public string FirstName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Family Name")]
+        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        public string SecondName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Language")]
+        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        public string Language { get; set; }
+
+    }
     public class ResetPasswordViewModel
     {
         [Required]

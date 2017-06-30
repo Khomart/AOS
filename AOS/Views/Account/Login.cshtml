@@ -57,40 +57,42 @@
             </section>
         </div>
     </div>*@
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+<div class="signIn">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
             {
-    @Html.AntiForgeryToken()
-    @*<h4>Use a local account to log in.</h4>
-        <hr />*@
-    <div class="logo"></div>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="mui-textfield--float-label mui-textfield">
-        @Html.TextBoxFor(m => m.Email, new { @class = "mdl-textfield__input" })
-        @*<input class="mdl-textfield__input" type="text" id="sample1">*@
-        <label class="">Email</label>
-        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-    </div>
-    <div class="mui-textfield--float-label mui-textfield">
-        @Html.TextBoxFor(m => m.Password, new { @class = "mdl-textfield__input" })
-        @*<input class="mdl-textfield__input" type="text" id="sample1">*@
-        <label class="">Password</label>
-        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-    </div>
-    <label class="mui-checkbox" for="checkbox" >
-        <label>
-            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "mdl-checkbox__input", @id = "checkbox" })
-            Remember Me
+        @Html.AntiForgeryToken()
+        @*<h4>Use a local account to log in.</h4>
+            <hr />*@
+        <div class="logo"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="mui-textfield--float-label mui-textfield">
+            @Html.TextBoxFor(m => m.Email, new { @class = "mdl-textfield__input" })
+            @*<input class="mdl-textfield__input" type="text" id="sample1">*@
+            <label class="">Email</label>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="mui-textfield--float-label mui-textfield">
+            @Html.TextBoxFor(m => m.Password, new { @class = "mdl-textfield__input" })
+            @*<input class="mdl-textfield__input" type="text" id="sample1">*@
+            <label class="">Password</label>
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <label class="mui-checkbox" for="checkbox">
+            <label>
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "mdl-checkbox__input", @id = "checkbox" })
+                Remember Me
+            </label>
+            @*<span class="mdl-checkbox__label">Remember Me</span>*@
         </label>
-        @*<span class="mdl-checkbox__label">Remember Me</span>*@
-    </label>
-    <div class="signAction">
-        <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary">Login</button>
+        <div class="signAction">
+            <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary">Login</button>
+        </div>
+        <p style="margin: 10px 0 0;">
+            @Html.ActionLink("Register as a new user", "Register")
+        </p>
+    }
     </div>
-    <p style="margin: 10px 0 0;">
-        @Html.ActionLink("Register as a new user", "Register")
-    </p>
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

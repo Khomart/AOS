@@ -153,32 +153,56 @@ namespace AOS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(NewRegisterViewModel model)
+        public ActionResult Register(RegisterContactViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                if (userTypes.Operator.Equals(model.Type))
-                {
-                    Operator flightOperator = new Operator
-                    {
+                Session["User"] = model;
+                return RedirectToAction("RegisterFinal");
+                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //var result = await UserManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                //    user = db.Users.SingleOrDefault(i => i.Email == model.Email);
+                //    if (userTypes.Operator.Equals(model.Type))
+                //    {
+                //        Operator newUserEntity = new Operator
+                //        {
+                //            FirstName = model.FirstName,
+                //            SecondName = model.SecondName,
+                //            UserLink = user,
+                //        };
+                //        db.Operator.Add(newUserEntity);
+                //    }
+                //    else if (userTypes.State.Equals(model.Type))
+                //    {
+                //        State newUserEntity = new State
+                //        {
+                //            FirstName = model.FirstName,
+                //            SecondName = model.SecondName,
+                //            UserLink = user,
+                //        };
+                //        db.States.Add(newUserEntity);
+                //    }
+                //    try {
+                //        var res = db.SaveChanges();
+                //    }
+                //    catch (Exception)
+                //    {
 
-                    };
-                }
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                //    }
+
+                //    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                //    // Send an email with this link
+                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -186,6 +210,67 @@ namespace AOS.Controllers
             return View(model);
         }
 
+        [ChildActionOnly]
+        public ActionResult RegisterFinal()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> RegisterFinal(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = null;
+                if (Session["User"] != null)
+                {
+                    user = Session["User"] as ApplicationUser;
+                    // you may use u now.
+                    user.Email = model.Email;
+                    user.UserName = model.Email;
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        user = db.Users.SingleOrDefault(i => i.Email == model.Email);
+                        if (userTypes.Operator.Equals(user.OrganizationType))
+                        {
+                            Operator newUserEntity = new Operator
+                            {
+                                UserLink = user,
+                            };
+                            db.Operator.Add(newUserEntity);
+                        }
+                        else if (userTypes.State.Equals(user.OrganizationType))
+                        {
+                            State newUserEntity = new State
+                            {
+                                UserLink = user,
+                            };
+                            db.States.Add(newUserEntity);
+                        }
+
+
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        try
+                        {
+                            var res = db.SaveChanges();
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                    AddErrors(result);
+
+                }
+            }
+            return View(model);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

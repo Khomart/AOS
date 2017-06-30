@@ -11,6 +11,17 @@ namespace AOS.Models.IdentityModels
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Title Title { get; set; }
+        public Language Language { get; set; }
+
+        public OrganizationCategory OrganizationCategory { get; set; }
+        public string OrganizationName { get; set; }
+        public userTypes OrganizationType { get; set; }
+        public string JobTitle { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string PostalCode { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager)
         {

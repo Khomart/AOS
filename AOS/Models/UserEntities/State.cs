@@ -1,4 +1,5 @@
 ﻿using AOS.Models.IdentityModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,8 +20,8 @@ namespace AOS.Models.UserEntities
         public byte[] RowVersion { get; set; }
 
 
-        [ForeignKey("User")]
-        public int UserID { set; get; }
-        public ApplicationUser User { set; get; }
+        //[ForeignKey("User")]
+        //public int UserID { set; get; }
+        //public ApplicationUser User { set; get; }
     }
 }

@@ -13,6 +13,7 @@ using AOS.Models.IdentityModels;
 using AOS.DbAccess;
 using System.Web.Mvc.Html;
 using AOS.Models.UserEntities;
+using AOS.Services;
 
 namespace AOS.Controllers
 {
@@ -144,7 +145,10 @@ namespace AOS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(userTypes));
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
+            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
+            ViewBag.Languages = EnumHelper.GetSelectList(typeof(Language));
+            ViewBag.Countries = EnumHelper.GetSelectList(typeof(Countries));
             return View();
         }
 
@@ -158,7 +162,7 @@ namespace AOS.Controllers
             if (ModelState.IsValid)
             {
                 Session["User"] = model;
-                return RedirectToAction("RegisterFinal");
+                return RedirectToAction("RegisterFinal", new { });
                 //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 //var result = await UserManager.CreateAsync(user, model.Password);
                 //if (result.Succeeded)
@@ -206,16 +210,25 @@ namespace AOS.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(userTypes));
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
+            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
+            ViewBag.Languages = EnumHelper.GetSelectList(typeof(Language));
+            ViewBag.Countries = EnumHelper.GetSelectList(typeof(Countries));
             return View(model);
         }
 
-        [ChildActionOnly]
+        [AllowAnonymous]
+        [NoDirectAccess]
         public ActionResult RegisterFinal()
         {
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
+            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
             return View();
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterFinal(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -231,7 +244,7 @@ namespace AOS.Controllers
                     if (result.Succeeded)
                     {
                         user = db.Users.SingleOrDefault(i => i.Email == model.Email);
-                        if (userTypes.Operator.Equals(user.OrganizationType))
+                        if (OrganizationTypes.Operator.Equals(user.OrganizationType))
                         {
                             Operator newUserEntity = new Operator
                             {
@@ -239,7 +252,7 @@ namespace AOS.Controllers
                             };
                             db.Operator.Add(newUserEntity);
                         }
-                        else if (userTypes.State.Equals(user.OrganizationType))
+                        else if (OrganizationTypes.State.Equals(user.OrganizationType))
                         {
                             State newUserEntity = new State
                             {
@@ -269,6 +282,8 @@ namespace AOS.Controllers
 
                 }
             }
+            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
+            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
             return View(model);
         }
         //

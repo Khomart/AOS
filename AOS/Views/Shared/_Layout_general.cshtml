@@ -13,73 +13,19 @@
     <section class="mainPage">
         <div class="operator"></div>
         <div class="state"></div>
-
-            @*<form class="form col-md-12 center-block">
-                <div class="form-group">
-                    <input type="text" class="form-control input-lg" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control input-lg" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                    <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-                </div>
-            </form>*@
-            @*<form>
-                <div class="logo"></div>
-                <div class="group">
-                    <input type="email"><span class="highlight"></span><span class="bar"></span>
-                    <label>Email</label>
-                </div>
-                <div class="group">
-                    <input type="password"><span class="highlight"></span><span class="bar"></span>
-                    <label>Password</label>
-                </div>
-                <button type="button" class="button buttonBlue">
-                    Login
-                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-                </button>
-                <a href=""><span>Register</span></a>
-            </form>*@
-            @RenderBody()
+        <div class="mainEffect"></div>
         
     </section>
-    @*@{ RenderBody(); }*@
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+    <section class="mainPage mainPageSec2">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>*@
+    </section>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/script")
-    @Scripts.Render("~/bundles/muijs")
-    @*@Scripts.Render("~/bundles/angular")*@
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/script")
+        @Scripts.Render("~/bundles/muijs")
+        @*@Scripts.Render("~/bundles/angular")*@
+        @RenderSection("scripts", required: false)
 </body>
 </html>

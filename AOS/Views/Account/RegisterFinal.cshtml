@@ -1,35 +1,22 @@
-﻿@model AOS.Models.ContactModel
+﻿@model AOS.Models.RegisterContactViewModel
 
 @{
     ViewBag.Title = "Register";
 }
-<div class="signInWide signIn">
+<div class="signIn">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "mui-form", role = "form" }))
     {
         @Html.AntiForgeryToken()
         <div class="logo"></div>
         <h2>Plase provide additional contact data</h2>
         @Html.ValidationSummary("", new { @class = "text-danger" })
+        @*@Html.HiddenFor(x => x.HiddenPostBack)
         @Html.HiddenFor(x => x.HiddenPostBack)
         @Html.HiddenFor(x => x.HiddenPostBack)
-        @Html.HiddenFor(x => x.HiddenPostBack)
-        @Html.HiddenFor(x => x.HiddenPostBack)
+        @Html.HiddenFor(x => x.HiddenPostBack)*@
 
-        <div style="display:flex;">
-            <div class="mui-select" style="display:inline-block; width:40px;">
-                @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.Title, "Value", "Text"), " ", new { @class = "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" })
-                <label>Specify Account Type</label>
-                @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
-            </div>
-            <div class="mui-textfield--float-label mui-textfield" style="display:inline-block;">
-                @Html.TextBoxFor(m => m.Email, new { @class = "mdl-textfield__input" })
-                @*<input class="mdl-textfield__input" type="text" id="sample1">*@
-                <label class="" for="sample1">Email</label>
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
         <div class="mui-textfield--float-label mui-textfield">
-            @Html.TextBoxFor(m => m.Password, new { @class = "mdl-textfield__input" })
+            @Html.TextBoxFor(m => m.Password, new { @class = "mdl-textfield__input", @type = "password" })
             @*<input class="mdl-textfield__input" type="text" id="sample1">*@
             <label class="" for="sample1">Password</label>
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })

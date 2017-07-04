@@ -115,9 +115,24 @@ namespace AOS.Models
 
     public class RegisterContactViewModel
     {
+
+        [Required]
+        [Display(Name = "Account Type")]
+        public OrganizationTypes Type { get; set; }
+
+        [Required]
+        [Display(Name = "Company Name")]
+        public string OrganizationName { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public Countries Country { get; set; }
+
+        //Personal
+
         [Required]
         [Display(Name = "Title")]
-        public int Title { get; set; }
+        public Title Title { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Given Name")]
@@ -128,11 +143,38 @@ namespace AOS.Models
         [Display(Name = "Family Name")]
         [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
         public string SecondName { get; set; }
+        [Required]
+        [Display(Name = "Position")]
+        public string JobTitle { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Language")]
         [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
-        public string Language { get; set; }
+        public Language Language { get; set; }
+
+        //[Required]
+        //[Display(Name = "Category")]
+        //public OrganizationCategory OrganizationCategory { get; set; }
+
+        //[Required]
+        //[Display(Name = "State")]
+        //public string State { get; set; }
+
+        //[Required]
+        //[Display(Name = "Unit")]
+        //public OrganizationTypes OrganizationType { get; set; }
+
+        [Required]
+        [Display(Name = "Street Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Postal Code")]
+        public string PostalCode { get; set; }
 
     }
     public class ResetPasswordViewModel

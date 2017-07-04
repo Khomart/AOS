@@ -1,106 +1,122 @@
 ﻿body {
-    /*padding-top: 50px;
-    padding-bottom: 20px;*/
+	/*padding-top: 50px;
+	padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,*/
 /*select,*/
 textarea {
-    max-width: 280px;
+	max-width: 280px;
 }
 section.mainPage{
-    background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
-    z-index:1000;
-    display: flex;
-    width:100%; 
-    height:100%;
-    background-color: rgba(37, 96, 144, 0.2);
+	//background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
+	z-index:-1;
+	display: flex;
+	width:100%; 
+	height:100%;
+    position:fixed;
+	//background-color: rgba(37, 96, 144, 0.2);
+}
+section.mainPageSec2{
+    z-index:2;
+    position: relative;
+}
+.mainEffect{
+	background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
+	z-index: 0;
+	width: 100%;
 }
 .operator{
-    background-image: url(/Content/plane.jpg);
-    height: 100%;
-    width: 55%;
-    display: inline-block;
-    float: left;
-    background-size: cover;
-    position: absolute;
-    background-position-x: center;
-    z-index: -1;
+	background-image: url(/Content/plane.jpg);
+	height: 100%;
+	width: 55%;
+	display: inline-block;
+	float: left;
+	background-size: cover;
+	position: absolute;
+	background-position-x: center;
+	z-index: -1;
 }
 .state{
-    background-image: url(/Content//flags.jpg);
-    height: 100%;
-    width: 55%;
-    display: inline-block;
-    left: 45%;
-    float: right;
-    position: absolute;
-    background-size: cover;
-    background-position-x: center;
-    clip-path: polygon(17% 0%, 100% 0%, 100% 100%, 0% 100%);
-    z-index: -1;
+	background-image: url(/Content//flags.jpg);
+	height: 100%;
+	width: 55%;
+	display: inline-block;
+	left: 45%;
+	float: right;
+	position: absolute;
+	background-size: cover;
+	background-position-x: center;
+	clip-path: polygon(17% 0%, 100% 0%, 100% 100%, 0% 100%);
+	z-index: -1;
 }
 .signIn{
-    margin:auto;
-    //text-align:center;
+	margin:auto;
+	//text-align:center;
 }
+
 .signIn .signAction, .signIn p{
-    text-align:center;
+	text-align:center;
 }
 
 /*Front Login Area*/
 .signIn .logo{
-    background: url('/Content/FINAL LOGO.jpg') center center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 250px;
-    margin: -2em 0 0 0;
-    background-size: contain;
+	background: url('/Content/FINAL LOGO.jpg') center center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 250px;
+	margin: -2em 0 0 0;
+	background-size: contain;
 }
 .signIn form {
 	width: 380px;
-	margin: 4em auto;
+	margin: 0em auto;
 	padding: 3em 2em 2em 2em;
 	background: #ffffff;
 	border: 1px solid #ebebeb;
 	box-shadow: rgba(0,0,0,.14902) 0 1px 6px 4px, rgba(0,0,0,.09804) 0 1px 2px 0;
 }
 
+.signInWide form{
+	width: 570px;
+    margin: 40px;
+}
+
 .signIn .mdl-checkbox__label{
-    float: left;
-    color: rgba(0, 0, 0, 0.28);
+	float: left;
+	color: rgba(0, 0, 0, 0.28);
 }
 .signIn .mdl-checkbox__box-outline{
-    left:10px;
+	left:10px;
 }
 .signIn .mdl-checkbox__ripple-container{
-    left:0;
+	left:0;
 }
 .signIn .mdl-checkbox__label{
-    float:left;
-    color: rgba(0, 0, 0, 0.28);
-    left: 10px;
+	float:left;
+	color: rgba(0, 0, 0, 0.28);
+	left: 10px;
 }
 .signIn label.mdl-checkbox{
-    margin:20px 0;
+	margin:20px 0;
 }
 .signIn button{
-    width: 200px;
-    height: 40px;
+	width: 200px;
+	height: 40px;
 }
 /*.signIn .group { 
 	position: relative; 
@@ -277,9 +293,9 @@ section.mainPage{
   25% { opacity: 1; }
 
   100% {
-    width: 200%;
-    padding-bottom: 200%;
-    opacity: 0;
+	width: 200%;
+	padding-bottom: 200%;
+	opacity: 0;
   }
 }*/
 /* Front login area over*/

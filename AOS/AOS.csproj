@@ -227,6 +227,18 @@
     <Compile Include="Migrations\201706231947002_First.Designer.cs">
       <DependentUpon>201706231947002_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707041341398_second.cs" />
+    <Compile Include="Migrations\201707041341398_second.Designer.cs">
+      <DependentUpon>201707041341398_second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707041917501_second_plus_small_change.cs" />
+    <Compile Include="Migrations\201707041917501_second_plus_small_change.Designer.cs">
+      <DependentUpon>201707041917501_second_plus_small_change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707042043138_second_plus_small_change_more.cs" />
+    <Compile Include="Migrations\201707042043138_second_plus_small_change_more.Designer.cs">
+      <DependentUpon>201707042043138_second_plus_small_change_more.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enum.cs" />
@@ -246,6 +258,7 @@
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\IMailService.cs" />
     <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\NoDirectAccess.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -305,7 +318,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout_general.cshtml" />
-    <Content Include="Views\Account\RegisterContact.cshtml" />
+    <Content Include="Views\Account\RegisterFinal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,6 +334,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706231947002_First.resx">
       <DependentUpon>201706231947002_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707041341398_second.resx">
+      <DependentUpon>201707041341398_second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707041917501_second_plus_small_change.resx">
+      <DependentUpon>201707041917501_second_plus_small_change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707042043138_second_plus_small_change_more.resx">
+      <DependentUpon>201707042043138_second_plus_small_change_more.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

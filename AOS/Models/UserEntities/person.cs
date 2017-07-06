@@ -12,13 +12,9 @@ namespace AOS.Models.UserEntities
     {
         [Key]
         public int ID { set; get; }
+        [ForeignKey("User")]
         [Required]
-        public string FirstName { set; get; }
-        [Required]
-        public string SecondName { set; get; }
-        [ForeignKey("UserLink")]
-        [Required]
-        public int UserLinkId { set; get; }
-        public virtual ApplicationUser UserLink { set; get; }
+        public int UserID { set; get; }
+        public virtual ApplicationUser User { set; get; }
     }
 }

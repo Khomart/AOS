@@ -1,10 +1,22 @@
 ﻿@{
-    if (!User.Identity.Name.IsEmpty())
+    if (User.Identity.Name.IsEmpty())
+    {
+        Layout = "~/Views/Shared/_Layout_general.cshtml";
+    }
+    else if(User.IsInRole("State"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (User.IsInRole("Operator"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (User.IsInRole("Admin"))
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     else
     {
-        Layout = "~/Views/Shared/_Layout_general.cshtml";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }

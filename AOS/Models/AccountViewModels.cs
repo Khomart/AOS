@@ -93,24 +93,10 @@ namespace AOS.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
-        [Display(Name = "Account Type")]
-        public int Type { get; set; }
-
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Given Name")]
-        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
-        public string FirstName { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Family Name")]
-        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
-        public string SecondName { get; set; }
     }
 
     public class RegisterContactViewModel
@@ -136,11 +122,13 @@ namespace AOS.Models
 
         [DataType(DataType.Text)]
         [Display(Name = "Given Name")]
+        [Required]
         [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Family Name")]
+        [Required]
         [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
         public string SecondName { get; set; }
         [Required]
@@ -149,7 +137,7 @@ namespace AOS.Models
 
         [DataType(DataType.Text)]
         [Display(Name = "Language")]
-        [StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
+        //[StringLength(20, ErrorMessage = "The name should be at least 3 characters long", MinimumLength = 3)]
         public Language Language { get; set; }
 
         //[Required]

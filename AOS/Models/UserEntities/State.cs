@@ -11,11 +11,10 @@ namespace AOS.Models.UserEntities
 {
     public class State : Person
     {
-        public int StateID { set; get; }
-        [Display(Name = "State Name")]
-        public string Name { set; get; }
-        [Display(Name = "Short Name")]
-        public string Short { set; get; }
+        //[Display(Name = "State Name")]
+        //public string Name { set; get; }
+        //[Display(Name = "Short Name")]
+        //public string Short { set; get; }
         [Timestamp]
         public byte[] RowVersion { get; set; }
 

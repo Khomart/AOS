@@ -221,25 +221,38 @@ namespace AOS.Controllers
         [NoDirectAccess]
         public ActionResult RegisterFinal()
         {
-            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
-            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterFinal(RegisterViewModel model)
+        public async Task<ActionResult> RegisterFinal(NewRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 ApplicationUser user = null;
+                RegisterContactViewModel sessionStore = null;
                 if (Session["User"] != null)
                 {
-                    user = Session["User"] as ApplicationUser;
-                    // you may use u now.
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
+                    sessionStore = Session["User"] as RegisterContactViewModel;
+                    user = new ApplicationUser()
+                    {
+                        FirstName = sessionStore.FirstName,
+                        LastName = sessionStore.SecondName,
+                        Title = sessionStore.Title,
+                        Language = sessionStore.Language,
+                        JobTitle = sessionStore.JobTitle,
+                        OrganizationName = sessionStore.OrganizationName,
+                        OrganizationType = sessionStore.Type,
+                        Country = sessionStore.Country,
+                        Address = sessionStore.Address,
+                        City = sessionStore.City,
+                        PostalCode = sessionStore.PostalCode,
+                        Email = model.Email,
+                        UserName = model.Email,
+                    };
+
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -248,17 +261,19 @@ namespace AOS.Controllers
                         {
                             Operator newUserEntity = new Operator
                             {
-                                UserLink = user,
+                                UserID = user.Id,
                             };
                             db.Operator.Add(newUserEntity);
+                            var result1 = UserManager.AddToRole(user.Id, "Operator");
                         }
                         else if (OrganizationTypes.State.Equals(user.OrganizationType))
                         {
                             State newUserEntity = new State
                             {
-                                UserLink = user,
+                                UserID = user.Id,
                             };
                             db.States.Add(newUserEntity);
+                            var result2 = UserManager.AddToRole(user.Id, "State");
                         }
 
 
@@ -282,8 +297,6 @@ namespace AOS.Controllers
 
                 }
             }
-            ViewBag.Titles = EnumHelper.GetSelectList(typeof(Title));
-            ViewBag.userTypes = EnumHelper.GetSelectList(typeof(OrganizationTypes));
             return View(model);
         }
         //

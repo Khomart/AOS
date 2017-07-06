@@ -9,7 +9,7 @@ namespace AOS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/lib/jquery/dist/jquery*"));
+                        "~/lib/jquery/dist/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/lib/jquery.validation/dist/jquery.validate*"));

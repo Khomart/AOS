@@ -10,9 +10,9 @@
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="mui-panel mui-container-fluid">
             <div class="mui-row">
-
                 <div class="mui-select mui-col-md-6">
-                    @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.userTypes, "Value", "Text"), "Specify Your Account Type *", new { @class = "" })
+                    @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.userTypes, "Value", "Text"), " ", new { @class = "" })
+                    <label>Account Type</label>
                     @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
                 </div>
                 <div class="mui-textfield--float-label mui-textfield mui-col-md-6">
@@ -21,7 +21,8 @@
                     @Html.ValidationMessageFor(m => m.OrganizationName, "", new { @class = "text-danger" })
                 </div>
                 <div class="mui-select mui-col-md-6">
-                    @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.Countries, "Value", "Text"), "State *", new { @class = "" })
+                    @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.Countries, "Value", "Text"), " ", new { @class = "" })
+                    @Html.LabelFor(m => m.Country)
                     @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,7 +48,8 @@
                 </div>
                 <div class="mui-row">
                     <div class="mui-select mui-col-md-6">
-                        @Html.DropDownListFor(m => m.Language, new SelectList(ViewBag.Languages, "Value", "Text"), "Language *", new { @class = "" })
+                        @Html.DropDownListFor(m => m.Language, new SelectList(ViewBag.Languages, "Value", "Text"), " ", new { @class = "" })
+                        @Html.LabelFor(m => m.Language)
                         @Html.ValidationMessageFor(m => m.Language, "", new { @class = "text-danger" })
                     </div>
                     <div class="mui-textfield--float-label mui-textfield mui-col-md-6">

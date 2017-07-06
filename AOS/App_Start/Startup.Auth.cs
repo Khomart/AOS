@@ -47,7 +47,6 @@ namespace AOS
                         getUserIdCallback: (claim) => int.Parse(claim.GetUserId()))
                 }
             };
-
             app.UseCookieAuthentication(cookieOptions);
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -125,15 +124,15 @@ namespace AOS
                 //Here we create a Admin super user who will maintain the website                   
 
                 var user = new ApplicationUser();
-                user.UserName = "shanu";
-                user.Email = "syedshanumcain@gmail.com";
+                user.UserName = "admin";
+                user.Email = "admin@aos.com";
 
-                string userPWD = "A@Z200711";
+                string userPWD = "Eduperdum6102";
 
 
                 var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin    
+                //Add default User to Role Admin
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");

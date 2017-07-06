@@ -7372,17 +7372,15 @@ textarea {
 	max-width: 280px;
 }
 section.mainPage{
-	//background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
 	z-index:-1;
 	display: flex;
 	width:100%; 
 	height:100%;
-    position:fixed;
-	//background-color: rgba(37, 96, 144, 0.2);
+	position:fixed;
 }
 section.mainPageSec2{
-    z-index:2;
-    position: relative;
+	z-index:2;
+	position: relative;
 }
 .mainEffect{
 	background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
@@ -7411,6 +7409,16 @@ section.mainPageSec2{
 	background-size: cover;
 	background-position-x: center;
 	clip-path: polygon(17% 0%, 100% 0%, 100% 100%, 0% 100%);
+	z-index: -1;
+}
+.stateMain{
+	background-image: url(/Content//flags.jpg);
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	position: absolute;
+	background-size: cover;
+	background-position-x: center;
 	z-index: -1;
 }
 .signIn{
@@ -7442,7 +7450,7 @@ section.mainPageSec2{
 
 .signInWide form{
 	width: 570px;
-    margin: 40px;
+	margin: 40px;
 }
 
 .signIn .mdl-checkbox__label{
@@ -7648,3 +7656,99 @@ section.mainPageSec2{
   }
 }*/
 /* Front login area over*/
+
+/* Missing MUI (???)*/
+.mui-select>label {
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 100%;
+	color: rgba(0,0,0,.54);
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 15px;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.mui-select:focus>label, .mui-select>select:focus~label {
+	color: #2196F3;
+}
+/* End missing MUI */
+.mui-row{
+	margin-top: 150px;
+}
+section>.mui-row>div{
+	height: 600px;
+}
+header.mui-appbar{
+	position:fixed;
+	box-shadow: rgba(0,0,0,.14902) 0 1px 6px 4px, rgba(0,0,0,.09804) 0 1px 2px 0;
+	width:100%;
+}
+.nav>li>a{
+	color: #000000;
+}
+.mainStatePage{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	filter: blur(10px);
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	-o-filter: blur(10px);
+	-ms-filter: blur(10px);
+}
+.mainStatePage .mainEffect{
+		height: 100%;
+}
+#mainStateContent{
+	width: calc(100% - 200px);
+	position: relative;
+	top: 0;
+	z-index: 2
+}
+/*#mainStateContent,*/#sidedrawer {
+	position: fixed;
+	top: 0;
+	z-index: 2
+}
+#sidedrawer {
+	bottom: 0;
+	width: 200px;
+	left: -200px;
+	overflow: auto;
+	background-color: #FFF;
+	-webkit-transition: -webkit-transform .2s;
+	transition: -webkit-transform .2s;
+	transition: transform .2s;
+	transition: transform .2s,-webkit-transform .2s
+}
+
+#sidedrawer.active {
+	-webkit-transform: translate(200px);
+	transform: translate(200px)
+}
+@media (min-width: 768px) {
+	#mainStateContent {
+		left: 200px;
+	}
+
+	#sidedrawer {
+		-webkit-transform: translate(200px);
+		transform: translate(200px);
+	}
+
+
+	body.hide-sidedrawer #mainStateContent {
+		left: 0;
+	}
+
+	body.hide-sidedrawer #sidedrawer {
+		-webkit-transform: translate(0);
+		transform: translate(0);
+	}
+}
+.mui-col-md-4.mui-panel{
+	border: 1px solid rgba(0,0,0,.12);
+}

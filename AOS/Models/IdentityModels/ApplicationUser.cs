@@ -22,7 +22,7 @@ namespace AOS.Models.IdentityModels
         //organization data
         public string OrganizationName { get; set; }
         public OrganizationTypes OrganizationType { get; set; }
-        public string Country { get; set; }
+        public Countries Country { get; set; }
 
         //mailing address
         public string Address { get; set; }

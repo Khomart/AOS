@@ -1,4 +1,5 @@
-﻿using AOS.Models.IdentityModels;
+﻿using AOS.Models.ApplicationForms;
+using AOS.Models.IdentityModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,6 @@ namespace AOS.Models.UserEntities
         //[ForeignKey("User")]
         //public int UserID { set; get; }
         //public ApplicationUser User { set; get; }
+        public virtual IQueryable<FOAFSample> ApplicationSampleList { set; get; }
     }
 }
